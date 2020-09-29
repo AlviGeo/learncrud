@@ -36,19 +36,19 @@ if (isset($_GET['delete'])) {
     header('location:index.php');
 
 }
-if (isset($_GET['edit'])) {
-    $id = $_GET['edit'];
-    $update = true;
-    ($result = $mysqli->query("SELECT * FROM book WHERE id=$id")) or die($mysqli->error);
+// if (isset($_GET['edit'])) {
+//     $id = $_GET['edit'];
+//     $update = true;
+//     ($result = $mysqli->query("SELECT * FROM book WHERE id=$id")) or die($mysqli->error);
 
-    if ($result->num_rows) {
-        $row = $result->fetch_array();
-        $title = $row['title'];
-        $author = $row['author'];
-        $year = $row['year'];
-    }
+//     if ($result->num_rows) {
+//         $row = $result->fetch_array();
+//         $title = $row['title'];
+//         $author = $row['author'];
+//         $year = $row['year'];
+//     }
 
-}
+// }
 
 if (isset($_POST['update'])) {
     $id = $_POST['id'];
@@ -56,9 +56,11 @@ if (isset($_POST['update'])) {
     $author = $_POST['author'];
     $year = $_POST['year'];
 
-    $mysqli->query (
-        "UPDATE book SET title='$title', author='$author', year='$year' WHERE id=$id "
-    ) or die($mysqli->error);
+    try{
+        $mysqli->query ("UPDATE book SET title='$title', author='$author', year='$year' WHERE id=$id ");
+    } catch(Exception $error) {
+        echo "Connection to Database error: ". $error->getMessage(); 
+    }
 
     $_SESSION['message'] = 'Record has been updated';
     $_SESSION['msg_type'] = 'warning';

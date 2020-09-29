@@ -11,6 +11,16 @@
 <body>
     <?php include 'query.php'; ?>
     <div class="container">
+        <?php if (isset($_SESSION['message'])) : ?>
+            <div class="alert alert-<?= $_SESSION['msg_type']; ?>">
+                <?php
+                echo $_SESSION['message'];
+                unset($_SESSION['message']);    
+                ?>
+            </div>
+        <?php endif; ?>
+    </div>
+    <div class="container">
         <?php
         $mysqli = new mysqli('localhost', 'root', '', 'learncrud') or die(mysqli_error($mysqli));
         $result = $mysqli->query("SELECT * FROM book") or die($mysqli->error);
@@ -36,7 +46,7 @@
                             <td><?php echo $row['author']; ?></td>
                             <td><?php echo $row['year']; ?></td>
                             <td>
-                                <a href="index.php?edit=<?php echo $row['id']; ?>" class="btn btn-info">Edit </a>
+                                <a href="edit.php?edit=<?php echo $row['id']; ?>" class="btn btn-info">Edit </a>
                                 <a href="index.php?delete=<?php echo $row['id']; ?>" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
