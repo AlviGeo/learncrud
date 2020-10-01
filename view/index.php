@@ -15,7 +15,7 @@
             <div class="alert alert-<?= $_SESSION['msg_type']; ?>">
                 <?php
                 echo $_SESSION['message'];
-                unset($_SESSION['message']);    
+                unset($_SESSION['message']);
                 ?>
             </div>
         <?php endif; ?>
@@ -38,6 +38,8 @@
                 </thead>
                 <tbody>
                     <?php
+                    $row = $mysqli->query("SELECT * FROM author JOIN book ON author.id = book.id ORDER BY book.name ASC")
+                        or die($mysqli->error);
                     while ($row = $result->fetch_assoc()) :
                     ?>
                         <tr>
@@ -54,9 +56,12 @@
                 </tbody>
             </table>
         </div>
+        <br>
+        <br>
+        <br>
     </div>
 
-    <div class="row justify-conntent-center">
+    <div class="row justify-content-center " style="background-color: powderblue">
         <form action="query.php" method="POST">
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             <div class="form-group">
