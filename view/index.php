@@ -5,11 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>CRUD PHP</title>
+
+    <!-- cara pertama -->
+    <link rel="stylesheet" href="../library/css/style.php">
+
+
+    <title>Simple CRUD with Join Table</title>
 </head>
 
 <body>
-    <?php include 'query.php'; ?>
+    <?php require_once '../library/process.php' ?>
     <div class="container">
         <?php if (isset($_SESSION['message'])) : ?>
             <div class="alert alert-<?= $_SESSION['msg_type']; ?>">
@@ -21,10 +26,11 @@
         <?php endif; ?>
     </div>
     <div class="container">
-        <?php
-        $mysqli = new mysqli('localhost', 'root', '', 'learncrud') or die(mysqli_error($mysqli));
-        $result = $mysqli->query("SELECT * FROM book") or die($mysqli->error);
-        ?>
+        <h2>Simple CRUD with Join Table</h2>
+        <br>
+        <a href="add_author.php">Add Author</a>
+        <a href="add_book">Add Book</a>
+        <br>
         <div class="row justify-content-center">
             <table class="table">
                 <thead>
@@ -38,18 +44,19 @@
                 </thead>
                 <tbody>
                     <?php
-                    $row = $mysqli->query("SELECT * FROM author JOIN book ON author.id = book.id ORDER BY book.name ASC")
+                    $row = $mysqli->query("SELECT * FROM author JOIN book ON author.id = book.id")
                         or die($mysqli->error);
-                    while ($row = $result->fetch_assoc()) :
+
+                    while ($result = $row->fetch_assoc()) :
                     ?>
                         <tr>
-                            <td><?php echo $row['id']; ?></td>
-                            <td><?php echo $row['title']; ?></td>
-                            <td><?php echo $row['author']; ?></td>
-                            <td><?php echo $row['year']; ?></td>
+                            <td><?php echo $result['id']; ?></td>
+                            <td><?php echo $result['title']; ?></td>
+                            <td><?php echo $result['author']; ?></td>
+                            <td><?php echo $result['year']; ?></td>
                             <td>
-                                <a href="edit.php?edit=<?php echo $row['id']; ?>" class="btn btn-info">Edit </a>
-                                <a href="index.php?delete=<?php echo $row['id']; ?>" class="btn btn-danger">Delete</a>
+                                <a href="edit_book.php?edit=<?php echo $result['id']; ?>" class="btn btn-info">Edit </a>
+                                <a href="../model/query.php?delete=<?php echo $result['id']; ?>" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                     <?php endwhile; ?>
@@ -59,36 +66,7 @@
         <br>
         <br>
         <br>
-    </div>
 
-    <div class="row justify-content-center " style="background-color: powderblue">
-        <form action="query.php" method="POST">
-            <input type="hidden" name="id" value="<?php echo $id; ?>">
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" name="title" class="form-control" value="<?php echo $title ?>" placeholder="Enter your Book Title">
-            </div>
-            <div class="form-group">
-                <label for="author">Author</label>
-                <input type="text" name="author" class="form-control" value="<?php echo $author ?>" placeholder="Enter Author Name">
-            </div>
-            <div class="form-group">
-                <label for="year">Year</label>
-                <input type="text" name="year" class="form-control" value="<?php echo $year ?>" placeholder="Enter Year of Publishing">
-            </div>
-            <div class="form-group">
-                <?php if ($update == true) : ?>
-                    <button type="submit" class="btn btn-info" name="update">update</button>
-                <?php else : ?>
-                    <button type="submit" class="btn btn-primary" name="save">Save</button>
-                <?php endif; ?>
-            </div>
-            </input>
-        </form>
-
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     </div>
 </body>
 

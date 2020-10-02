@@ -15,13 +15,13 @@
     $data = mysqli_query($mysqli, "SELECT * FROM book WHERE id = '$id'");
     while ($menu = $data->fetch_assoc()) :
     ?>
-        
 
-    <div class="container">
-        <div class="card-title">
-            <h2>Edit Data</h2>
-            <form action="query.php" method="POST">
-                <input type="hidden" name="id" value="<?php echo $menu['id']; ?>">
+
+        <div class="container">
+            <div class="card-title">
+                <h2>Edit Data</h2>
+                <form action="../model/query.php" method="POST">
+                    <input type="hidden" name="id" value="<?php echo $menu['id']; ?>">
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Title Name</label>
@@ -38,9 +38,9 @@
 
                     <button type="submit" name="update" class="btn btn-primary">Update</button>
                     <a href="index.php">Back</a>
-                    
-            </form>
-        </div>
+
+                </form>
+            </div>
         <?php endwhile; ?>
 
 
