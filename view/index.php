@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- cara pertama -->
-    <link rel="stylesheet" href="../library/css/style.php">
+    <!-- <link rel="stylesheet" href="../library/css/style.php"> -->
+    <link rel="stylesheet" href="../assets/css/styleSheet.css">
 
 
     <title>Simple CRUD with Join Table</title>
@@ -28,8 +29,8 @@
     <div class="container">
         <h2>Simple CRUD with Join Table</h2>
         <br>
-        <a href="add_author.php">Add Author</a>
-        <a href="add_book">Add Book</a>
+        <a href="../view/author/add_author.php">Add Author</a>
+        <a href="../view/book/add_book">Add Book</a>
         <br>
         <div class="row justify-content-center">
             <table class="table">
@@ -43,6 +44,8 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php include "./index_author.php" ?>
+
                     <?php
                     $row = $mysqli->query("SELECT * FROM author JOIN book ON author.id = book.id")
                         or die($mysqli->error);

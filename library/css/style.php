@@ -5,5 +5,5 @@ $test123 = "yellow"
 ?>
 
 a {
-background-color : <?= $test123 ?>;
+background-color : yellow
 }
