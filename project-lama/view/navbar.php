@@ -18,8 +18,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="../book/book_index">Book <span class="sr-only">(current)</span></a>
+                <li class="nav-item active">=
+                    <a class="nav-link" href="./book/book_index">Book <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="./author_index">Author</a>
@@ -27,46 +27,6 @@
             </ul>
         </div>
     </nav>
-
-    <div class="container mt-4">
-        <a href="./author/add_author.php" class="btn btn-success">Add Author</a>
-    </div>
-
-    <h3 class="mt-2">Table Author</h3>
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th>Author Name</th>
-                <th>Address</th>
-                <th>Phone Number</th>
-                <th>Photo</th>
-                <th>Publisher</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <?php
-        include '../library/process.php';
-
-        $row = $mysqli->query("SELECT * FROM author JOIN book ON author.id = book.id")
-            or die($mysqli->error);
-
-        while ($result = $row->fetch_assoc()) :
-        ?>
-            <tr>
-                <td><?php echo $result['id']; ?></td>
-                <td><?php echo $result['nama']; ?></td>
-                <td><?php echo $result['alamat']; ?></td>
-                <td><?php echo $result['no_hp']; ?></td>
-                <td><?php echo $result['foto']; ?></td>
-                <td>
-                    <a href="edit_book.php?edit=<?php echo $result['id']; ?>" class="btn btn-info">Edit </a>
-                    <a href="../model/query.php?delete=<?php echo $result['id']; ?>" class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
-        <?php endwhile; ?>
-    </table>
-
-
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

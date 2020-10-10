@@ -5,26 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Add New Author</title>
+    <title>Add Author Pisah</title>
 </head>
 
 <body>
     <div class="row justify-content-center " style="background-color: powderblue">
-        <form action="../model/query_author.php" method="POST">
+        <form action="../../model/query_author.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="name">Name</label>
+                <label>Name</label>
                 <input type="text" name="name" class="form-control" placeholder="Enter Author Name">
             </div>
             <div class="form-group">
-                <label for="author">Addres</label>
+                <label>Address</label>
                 <input type="text" name="address" class="form-control" placeholder="Enter Author Address">
             </div>
             <div class="form-group">
-                <label for="year">Phone Number</label>
+                <label>Phone Number</label>
                 <input type="number" name="phone" class="form-control" placeholder="Enter Author Phone number">
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary" name="save_author">Save</button>
+                <label for="foto">Author Picture</label>
+                <input type="file" name="images" class="form-control">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success" name="save_author">Save</button>
             </div>
             </input>
         </form>

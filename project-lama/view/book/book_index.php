@@ -19,34 +19,33 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="../book/book_index">Book <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="./book_index">Book <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./author_index">Author</a>
+                    <a class="nav-link" href="../author/author_index">Author</a>
                 </li>
             </ul>
         </div>
     </nav>
 
     <div class="container mt-4">
-        <a href="./author/add_author.php" class="btn btn-success">Add Author</a>
+        <a href="add_book.php" class="btn btn-success">Add Book</a>
     </div>
 
-    <h3 class="mt-2">Table Author</h3>
+    <h3 class="mt-2">Table Book</h3>
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th>Author Name</th>
-                <th>Address</th>
-                <th>Phone Number</th>
+                <th>Title Book</th>
+                <th>Author ID</th>
+                <th>Year</th>
                 <th>Photo</th>
                 <th>Publisher</th>
                 <th>Description</th>
             </tr>
         </thead>
         <?php
-        include '../library/process.php';
-
+        include('../../library/process.php');
         $row = $mysqli->query("SELECT * FROM author JOIN book ON author.id = book.id")
             or die($mysqli->error);
 
@@ -54,10 +53,12 @@
         ?>
             <tr>
                 <td><?php echo $result['id']; ?></td>
-                <td><?php echo $result['nama']; ?></td>
-                <td><?php echo $result['alamat']; ?></td>
-                <td><?php echo $result['no_hp']; ?></td>
-                <td><?php echo $result['foto']; ?></td>
+                <td><?php echo $result['title']; ?></td>
+                <td><?php echo $result['author_id']; ?></td>
+                <td><?php echo $result['year']; ?></td>
+                <td><?php echo $result['photo']; ?></td>
+                <td><?php echo $result['publisher']; ?></td>
+                <td><?php echo $result['description']; ?></td>
                 <td>
                     <a href="edit_book.php?edit=<?php echo $result['id']; ?>" class="btn btn-info">Edit </a>
                     <a href="../model/query.php?delete=<?php echo $result['id']; ?>" class="btn btn-danger">Delete</a>
@@ -65,9 +66,6 @@
             </tr>
         <?php endwhile; ?>
     </table>
-
-
-
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
