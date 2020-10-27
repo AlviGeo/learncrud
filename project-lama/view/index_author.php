@@ -60,7 +60,11 @@
                 <td><?php echo $result['nama']; ?></td>
                 <td><?php echo $result['alamat']; ?></td>
                 <td><?php echo $result['no_hp']; ?></td>
-                <td><img src="<?php echo "../model/Images/" . $result['foto']; ?>" style="width: 100%; height: auto" alt=""></td>
+                <td><?php echo $result['photo']; ?></td>
+                <td><?php echo $result['blish']; ?></td>
+                <td><?php echo $result['no_hp']; ?></td>
+                <td><img src="<?php echo "../model/Images/" . $result['foto']; ?>" style="width: 50px; height: 50px" alt=""></td>
+                <td><img src=""</td>
                 <td>
                     <a href="edit_author.php?edit=<?php echo $result['id']; ?>" class="btn btn-info">Edit </a>
                     <a href="../model/query_author.php?delete=<?php echo $result['id']; ?>" class="btn btn-danger">Delete</a>

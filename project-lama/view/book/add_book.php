@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Add Book Pisah</title>
@@ -11,14 +11,26 @@
 
 <body>
     <div class="row justify-content-center " style="background-color: pink">
-        <form action="../../model/query_author.php" method="POST">
+        <form action="../../model/query_book.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label>Title</label>
-                <input type="text" name="title" class="form-control" placeholder="Enter Author Title">
+                <input type="text" name="title" class="form-control" placeholder="Enter Book Title">
             </div>
             <div class="form-group">
                 <label for="author">Author</label>
-                <input type="text" name="author" class="form-control" placeholder="Enter Author Name">
+                <select name="author" id="author" class="form-control">
+                    <option disabled selected>Select Author</option>
+                    <?php
+                    include "../../library/process.php";
+                    $data = $mysqli->query("SELECT * FROM author") or die(mysqli_error($mysqli));
+
+                    while ($authors = $data->fetch_assoc()) :
+                    ?>
+                        <option value="<?= $authors['id'] ?>"><?= $authors['nama'] ?> </option>
+                    <?php
+                    endwhile;
+                    ?>
+                </select>
             </div>
             <div class="form-group">
                 <label>Year</label>

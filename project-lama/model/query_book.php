@@ -4,30 +4,54 @@ session_start();
 
 include '../library/process.php';
 
+
 if (isset($_POST['save_book'])) {
     $target = __DIR__ . "/Images/";
-    echo "masuk";
-    echo $target;
 
-    // $title = $_POST['title'];
-    // $author = $_POST['author'];
-    // $year = $_POST['year'];
-    // $photo = $_FILES['photo'];
-    // $publisher = $_POST['publisher'];
-    // $description = $_POST['description'];
+    // Check file extension
+    $file_extension = array('png', 'jpg', 'jpeg');
+    // The path to store the uploaded images
+    $picture = $_FILES['photo']['name'];
+    // get the file 
+    $x         = explode('.', $picture);
 
-    // try {
-    //     mysqli_query($mysqli, "INSERT INTO book (title, author, year, photo, publisher, description) VALUES('$title', '$author_id', '$year' , '$photo', '$publisher', '$description') ");
-    // } catch (Exception $error) {
-    //     echo "failed to saved data!" . $error;
-    // }
+    $extension = strtolower(end($x));
+    // check images size
+    $image_size = $_FILES['photo']['size'];
+    $file_tmp = $_FILES['photo']['tmp_name'];
 
-    // Alert messages
-    // $_SESSION['message']  = 'Record has been saved!';
-    // $_SESSION['msg_type'] = 'success';
+    // get others data
+    $title = $_POST['title'];
+    $author = $_POST['author'];
+    $year = $_POST['year'];
+    $photo = $_FILES['photo'];
+    $publisher = $_POST['publisher'];
+    $description = $_POST['description'];
 
-    // Redirect to homepages
-    // header("location: ../view/index_author.php");
+    if (in_array($extension, $file_extension) === true) {
+        if ($image_size < 1044070) {
+            move_uploaded_file($file_tmp, $target . $picture);
+
+            // Insert data
+            $query = mysqli_query($mysqli, "INSERT INTO book(title, author_id, year, photo, publisher, description) VALUES('$title', '$author', '$year', '$picture', '$publisher', '$description') ") or die(mysqli_error($mysqli));
+
+            if ($query) {
+                $_SESSION['message']    = 'Success saved author to DB';
+                $_SESSION['msg_type']   = 'success';
+            } else {
+                $_SESSION['message']    = 'Failed to saved author to DB';
+                $_SESSION['msg_type']   = 'danger';
+            }
+        } else {
+            $_SESSION['message']    = 'Images Size is too big !';
+            $_SESSION['msg_type']   = 'warning';
+        }
+    } else {
+        $_SESSION['message']    = 'File extension is not allowed';
+        $_SESSION['msg_type']   = 'warning';
+    }
+
+    header("location: ../view/index.php");
 }
 
 if (isset($_GET['delete'])) {
@@ -45,10 +69,14 @@ if (isset($_POST['edit_book'])) {
     $photo = $_POST['photo'];
     $publisher = $_POST['publisher'];
     $description = $_POST['description'];
-    mysqli_query(
-        $mysqli,
-        "UPDATE book SET id='$id', title='$title', year='$year', photo='$photo', publisher='$publisher', description='$description' WHERE id=$id"
-    ) or die(mysqli_error($mysqli));
+
+    if (in_array($extension, $file_extension) === true) {
+        if ($image_size < 1044070) {
+            move_uploaded_file($file_tmp, $target . $picture);
+        } else {
+        }
+    } else {
+    }
     // $_SESSION['msg'] = 'Succesfully Edited The Menu';
     // $_SESSION['msg_type'] = 'warning';
 

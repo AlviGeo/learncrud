@@ -22,9 +22,10 @@ if (isset($_POST['save_author'])) {
 
 
     // get others data
-    $name = $_POST['name'];
-    $address = $_POST['address'];
-    $phone = $_POST['phone'];
+    $name = $_POST['nama'];
+    $address = $_POST['alamat'];
+    $phone = $_POST['no_hp'];
+    $phone = $_POST['foto'];
 
     if (in_array($extension, $file_extension) === true) {
         if ($image_size < 1044070) {

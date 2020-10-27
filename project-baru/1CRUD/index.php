@@ -49,41 +49,44 @@
     </div>
 
     <div class="container ">
-        <div class="col-md-6 justify-content-center">
-            <div class="card ">
-                <h3 class="card-title">Insert Book Data</h3>
-                <form action="./Query.php" method="POST">
-                    <input type="hidden" name="id" value="<?php echo $id; ?>">
-                    <div class="form-group">
-                        <label>Book Title</label>
-                        <input type="text" name="title" class="form-control" value="<?php echo $title; ?>" placeholder="Enter Book Title">
-                    </div>
-                    <div class="form-group">
-                        <label>Author</label>
-                        <input type="text" name="author" class="form-control" value="<?php echo $author; ?>" placeholder="Enter Author's Name">
-                    </div>
-                    <div class="form-group">
-                        <label>Book's Year</label>
-                        <input type="text" name="year" class="form-control" value="<?php echo $year ?>" placeholder="Enter Book's Year">
-                    </div>
-                    <div class="form-group">
-                        <label>Publisher</label>
-                        <input type="text" name="publisher" class="form-control" value="<?php echo $publisher; ?>" placeholder="Enter Publisher's Name">
-                    </div>
-                    <div class="form-group">
-                        <label>Description</label>
-                        <input type="text" name="description" class="form-control" value="<?php echo $description; ?>" placeholder="Write Description">
-                    </div>
-                    <div class="form-group">
-                        <?php if ($update == true) : ?>
-                            <button type="submit" class="btn btn-info" name="update">Update</button>
-                        <?php else : ?>
-                            <button type="submit" class="btn btn-info" name="save_book">Save</button>
-                        <?php endif; ?>
-                    </div>
-                </form>
-
+        <div class="row justify-content-center">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="card ">
+                    <h3 class="card-title">Insert Book Data</h3>
+                    <form action="./Query.php" method="POST">
+                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+                        <div class="form-group">
+                            <label>Book Title</label>
+                            <input type="text" name="title" class="form-control" value="<?php echo $title; ?>" placeholder="Enter Book Title">
+                        </div>
+                        <div class="form-group">
+                            <label>Author</label>
+                            <input type="text" name="author" class="form-control" value="<?php echo $author; ?>" placeholder="Enter Author's Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Book's Year</label>
+                            <input type="text" name="year" class="form-control" value="<?php echo $year ?>" placeholder="Enter Book's Year">
+                        </div>
+                        <div class="form-group">
+                            <label>Publisher</label>
+                            <input type="text" name="publisher" class="form-control" value="<?php echo $publisher; ?>" placeholder="Enter Publisher's Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input type="text" name="description" class="form-control" value="<?php echo $description; ?>" placeholder="Write Description">
+                        </div>
+                        <div class="form-group">
+                            <?php if ($update == true) : ?>
+                                <button type="submit" class="btn btn-info" name="update">Update</button>
+                            <?php else : ?>
+                                <button type="submit" class="btn btn-info" name="save_book">Save</button>
+                            <?php endif; ?>
+                        </div>
+                    </form>
+                </div>
             </div>
+            <div class="col-md-2"></div>
         </div>
     </div>
     </div>
