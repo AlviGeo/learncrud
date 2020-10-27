@@ -36,31 +36,34 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
+                <th>No</th>
                 <th>Author Name</th>
                 <th>Address</th>
                 <th>Phone Number</th>
                 <th>Photo</th>
-                <th>Publisher</th>
-                <th>Description</th>
+                <th>Photo</th>
             </tr>
         </thead>
+
         <?php
         include '../library/process.php';
 
-        $row = $mysqli->query("SELECT * FROM author JOIN book ON author.id = book.id")
+        $no = 1;
+
+        $row = $mysqli->query("SELECT * FROM author ")
             or die($mysqli->error);
 
         while ($result = $row->fetch_assoc()) :
         ?>
             <tr>
-                <td><?php echo $result['id']; ?></td>
+                <td><?php echo $no++ ?></td>
                 <td><?php echo $result['nama']; ?></td>
                 <td><?php echo $result['alamat']; ?></td>
                 <td><?php echo $result['no_hp']; ?></td>
-                <td><?php echo $result['foto']; ?></td>
+                <td><img src="<?php echo "../model/Images/" . $result['foto']; ?>" style="width: 100%; height: auto" alt=""></td>
                 <td>
-                    <a href="edit_book.php?edit=<?php echo $result['id']; ?>" class="btn btn-info">Edit </a>
-                    <a href="../model/query.php?delete=<?php echo $result['id']; ?>" class="btn btn-danger">Delete</a>
+                    <a href="edit_author.php?edit=<?php echo $result['id']; ?>" class="btn btn-info">Edit </a>
+                    <a href="../model/query_author.php?delete=<?php echo $result['id']; ?>" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         <?php endwhile; ?>

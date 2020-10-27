@@ -16,6 +16,7 @@
 
 <body>
     <?php require_once '../library/process.php' ?>
+    
     <div class="container">
         <?php if (isset($_SESSION['message'])) : ?>
             <div class="alert alert-<?= $_SESSION['msg_type']; ?>">
@@ -32,43 +33,41 @@
         <a href="../view/author/add_author.php">Add Author</a>
         <a href="../view/book/add_book">Add Book</a>
         <br>
-        <div class="row justify-content-center">
-            <table class="table">
-                <thead>
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Year</th>
+                    <th colspan="2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                include "../library/process.php";
+
+                $row = $mysqli->query("SELECT * FROM author JOIN book ON author.id = book.id")
+                    or die($mysqli->error);
+
+                while ($result = $row->fetch_assoc()) :
+                ?>
                     <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Year</th>
-                        <th colspan="2">Action</th>
+                        <td><?php echo $result['id']; ?></td>
+                        <td><?php echo $result['title']; ?></td>
+                        <td><?php echo $result['author']; ?></td>
+                        <td><?php echo $result['year']; ?></td>
+                        <td>
+                            <a href="edit_book.php?edit=<?php echo $result['id']; ?>" class="btn btn-info">Edit </a>
+                            <a href="../model/query.php?delete=<?php echo $result['id']; ?>" class="btn btn-danger">Delete</a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php include "./index_author.php" ?>
-
-                    <?php
-                    $row = $mysqli->query("SELECT * FROM author JOIN book ON author.id = book.id")
-                        or die($mysqli->error);
-
-                    while ($result = $row->fetch_assoc()) :
-                    ?>
-                        <tr>
-                            <td><?php echo $result['id']; ?></td>
-                            <td><?php echo $result['title']; ?></td>
-                            <td><?php echo $result['author']; ?></td>
-                            <td><?php echo $result['year']; ?></td>
-                            <td>
-                                <a href="edit_book.php?edit=<?php echo $result['id']; ?>" class="btn btn-info">Edit </a>
-                                <a href="../model/query.php?delete=<?php echo $result['id']; ?>" class="btn btn-danger">Delete</a>
-                            </td>
-                        </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
-        </div>
-        <br>
-        <br>
-        <br>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    </div>
 
     </div>
 </body>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,88 +11,85 @@
 </head>
 
 <body>
-    <?php include 'process.php'; 
+    <?php include "./Query.php";  ?>
 
-        $query = "SELECT * FROM book";
-        $rows = $mysqli->query($mysqli);
-
-    ?>
+    <!-- TABLE -->
     <div class="container">
-        <div class="row" style="margin-top: 70px;">
-            <center>
-                <h1>Todo List</h1>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Book ID</th>
+                    <th>Book Title</th>
+                    <th>Author</th>
+                    <th>Year</th>
+                    <th>Publisher</th>
+                    <th>Description</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                include "process.php";
+                ($list = mysqli_query($mysqli, "SELECT * FROM book")) or
+                    die($mysqli->error);
+                while ($row = $list->fetch_assoc()) : ?>
+                    <tr>
+                        <td><?php echo $row['title']; ?></td>
+                        <td><?php echo $row['author']; ?></td>
+                        <td><?php echo $row['year']; ?></td>
+                        <td><?php echo $row['publisher']; ?></td>
+                        <td><?php echo $row['description']; ?></td>
+                        <td><a href="index.php?edit=<?php echo $row['id']; ?>" class="btn btn-info">Edit</a>
+                            <a href="Query.php?delete<?php echo $row['id']; ?>" onclick="return confirm('Do You want to delete this?');" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    </div>
 
-            </center>
-
-            <div class="col-md-12 col-md-offset ">
-                <table class="table table-striped">
-                    <button type="button" data-target="#myModal" data-toggle="modal" class="btn btn-success">Add Task</button>
-                    <button type="button" class="btn btn-default float-right">Print</button>
-                    <br><br>
-
-                    <!-- Modal -->
-                    <div id="myModal" class="modal fade" role="dialog">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">Modal Header
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title"></h4>
-                                </div>
-                                <div class="modal-body">
-                                    <form method="post" action="add.php">
-                                        <div class="form-group">
-                                            <label>Book Title</label>
-                                            <input type="text" required name="task" class="form-control">
-                                            <label>Author</label>
-                                            <input type="text" required name="task" class="form-control">
-                                            <label>Year</label>
-                                            <input type="text" required name="task" class="form-control">
-                                        </div>
-                                           <input type="submit" name="send" value="send" class="btn btn-success"> 
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
+    <div class="container ">
+        <div class="col-md-6 justify-content-center">
+            <div class="card ">
+                <h3 class="card-title">Insert Book Data</h3>
+                <form action="./Query.php" method="POST">
+                    <input type="hidden" name="id" value="<?php echo $id; ?>">
+                    <div class="form-group">
+                        <label>Book Title</label>
+                        <input type="text" name="title" class="form-control" value="<?php echo $title; ?>" placeholder="Enter Book Title">
                     </div>
+                    <div class="form-group">
+                        <label>Author</label>
+                        <input type="text" name="author" class="form-control" value="<?php echo $author; ?>" placeholder="Enter Author's Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Book's Year</label>
+                        <input type="text" name="year" class="form-control" value="<?php echo $year ?>" placeholder="Enter Book's Year">
+                    </div>
+                    <div class="form-group">
+                        <label>Publisher</label>
+                        <input type="text" name="publisher" class="form-control" value="<?php echo $publisher; ?>" placeholder="Enter Publisher's Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" name="description" class="form-control" value="<?php echo $description; ?>" placeholder="Write Description">
+                    </div>
+                    <div class="form-group">
+                        <?php if ($update == true) : ?>
+                            <button type="submit" class="btn btn-info" name="update">Update</button>
+                        <?php else : ?>
+                            <button type="submit" class="btn btn-info" name="save_book">Save</button>
+                        <?php endif; ?>
+                    </div>
+                </form>
 
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Book Title</th>
-                                <th scope="col">Author</th>
-                                <th scope="col">Year</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <?php while($row = $rows->fetch_assoc()):  ?>
-   
-                                <th scope="row"><?php echo $row['id']?></th>
-                                <td class="col-md-4"><?php echo $row['book_title'] ?></td>
-                                <td class="col-md-4"><?php echo $row['author'] ?></td>
-                                <td class="col-md-4"><?php echo $row['year'] ?></td>
-                                <td><a href="" class="btn btn-success">Edit</a></td>
-                                <td><a href="" class="btn btn-danger">Delete</a></td>
-                            </tr>
-                            <?php endwhile; ?>
-
-                        </tbody>
-                    </table>
             </div>
         </div>
     </div>
+    </div>
 
-
-
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </body>
 
 </html>
