@@ -35,12 +35,12 @@
                 while ($row = $list->fetch_assoc()) : ?>
                     <tr>
                         <td><?php echo $row['title']; ?></td>
-                        <td><?php echo $row['author']; ?></td>
+                        <td><?php echo $row['author_id']; ?></td>
                         <td><?php echo $row['year']; ?></td>
                         <td><?php echo $row['publisher']; ?></td>
                         <td><?php echo $row['description']; ?></td>
-                        <td><a href="index.php?edit=<?php echo $row['id']; ?>" class="btn btn-info">Edit</a>
-                            <a href="Query.php?delete<?php echo $row['id']; ?>" onclick="return confirm('Do You want to delete this?');" class="btn btn-danger">Delete</a>
+                        <td><a href="index.php?edit_book=<?php echo $row['id']; ?>" class="btn btn-info">Edit</a>
+                            <a href="Query.php?delete=<?php echo $row['id']; ?>" onclick="return confirm('Do You want to delete this?');" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 <?php endwhile; ?>
@@ -62,7 +62,7 @@
                         </div>
                         <div class="form-group">
                             <label>Author</label>
-                            <input type="text" name="author" class="form-control" value="<?php echo $author; ?>" placeholder="Enter Author's Name">
+                            <input type="number" name="author_id" class="form-control" value="<?php echo $author_id; ?>" placeholder="Enter Author's Name">
                         </div>
                         <div class="form-group">
                             <label>Book's Year</label>
