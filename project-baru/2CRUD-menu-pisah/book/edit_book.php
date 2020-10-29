@@ -13,7 +13,7 @@ session_start();
 </head>
 
 <body>
-    <?php include './Query.php';
+    <?php include './query_book.php';
 
     $id = $_GET['id'];
     $data = mysqli_query($mysqli, "SELECT * FROM book WHERE id = '$id'");
@@ -35,7 +35,7 @@ session_start();
             <div class="card" style="width: 18rem; color:white; background-color:salmon; ">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
-                    <form action="./Query.php" method="POST">
+                    <form action="./query_book.php" method="POST">
                         <input type="hidden" name="id" value="<?php echo $book['id']; ?>">
                         <div class="form-group">
                             <label>Title</label>
@@ -64,7 +64,7 @@ session_start();
                             <label>Description</label>
                             <input type="text" class="form-control" name="description" value="<?php echo $book['description']; ?>" placeholder="Edit Description">
                         </div>
-                        <a href="./index.php" class="btn btn-primary">Edit Book</a>
+                        <button type="submit" name="update" class="btn btn-primary">Edit Book</button>
                 </div>
                 </form>
             </div>

@@ -2,7 +2,7 @@
 
 session_start();
 
-include '../library/process.php';
+$mysqli = new mysqli("localhost", "root", "", "learncrud2") or die(mysqli_error($mysqli));
 
 
 if (isset($_POST['save_book'])) {

@@ -1,3 +1,5 @@
 <?php 
-$mysqli = new mysqli("localhost", "root", "", "learncrud") or die(mysqli_error($mysqli));
+
+$mysqli = new mysqli("localhost", "root", "", "learncrud2") or die(mysqli_error($mysqli));
+
 ?>

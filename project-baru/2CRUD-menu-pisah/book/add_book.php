@@ -17,7 +17,7 @@
             <div class="col-md-8">
                 <div class="card ">
                     <h3 class="card-title">Insert Book Data</h3>
-                    <form action="./Query.php" method="POST">
+                    <form action="./query_book.php" method="POST">
                         <input type="hidden" name="id">
                         <div class="form-group">
                             <label>Book Title</label>
@@ -27,11 +27,11 @@
                             <label>Author</label>
                             <select type="number" name="author_id" class="form-control" placeholder="Enter Author's Name">
                                 <option disabled selected>Choose Author</option>
-                                <?php include "../process.php"; 
+                                <?php include "../process.php";
                                 $list = mysqli_query($mysqli, "SELECT * FROM author") or die(mysqli_error($mysqli));
                                 while ($row = $list->fetch_assoc()) : ?>
 
-                                <option value="<?php echo $row['id']; ?>"><?= $row['nama']; ?></option>
+                                    <option value="<?php echo $row['id']; ?>"><?= $row['nama']; ?></option>
                                 <?php endwhile; ?>
                             </select>
                         </div>
