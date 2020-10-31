@@ -22,17 +22,17 @@ if (isset($_POST['save_author'])) {
 
 
     // get others data
-    $name = $_POST['nama'];
-    $address = $_POST['alamat'];
-    $phone = $_POST['no_hp'];
-    $phone = $_POST['foto'];
+    $nama = $_POST['nama'];
+    $alamat = $_POST['alamat'];
+    $no_hp = $_POST['no_hp'];
+    $foto = $_POST['foto'];
 
     if (in_array($extension, $file_extension) === true) {
         if ($image_size < 1044070) {
             move_uploaded_file($file_tmp, $target . $picture);
 
             // Insert data to DB
-            $query = mysqli_query($mysqli, "INSERT INTO author(nama, alamat, no_hp, foto) VALUES('$name', '$address', '$phone', '$picture') ") or die(mysqli_error($mysqli));
+            $query = mysqli_query($mysqli, "INSERT INTO author(nama, alamat, no_hp, foto) VALUES('$nama', '$alamat', '$no_hp', '$foto') ") or die(mysqli_error($mysqli));
 
             if ($query) {
                 $_SESSION['message']    = 'Success saved author to DB';
@@ -65,15 +65,31 @@ if (isset($_GET['delete'])) {
 
 if (isset($_POST['edit_author'])) {
     $id = $_POST['id'];
-    $name = $_POST['nama'];
-    $address = $_POST['alamat'];
-    $phone_number = $_POST['no_hp'];
+    $nama = $_POST['nama'];
+    $alamat = $_POST['alamat'];
+    $no_hp = $_POST['no_hp'];
     mysqli_query(
         $mysqli,
-        "UPDATE author SET nama='$name', alamat='$address', phone_number='$phone_number' WHERE id=$id"
+        "UPDATE author SET nama='$nama', alamat='$alamat', no_hp='$no_hp' WHERE id=$id"
     ) or die(mysqli_error($mysqli));
     // $_SESSION['msg'] = 'Succesfully Edited The Menu';
     // $_SESSION['msg_type'] = 'warning';
 
     header('location: ../View/author/author_index.php');
+}
+
+if (isset($_POST['update_author'])) {
+    $id = $_POST['id'];
+    $nama = $_POST['nama'];
+    $alamat = $_POST['alamat'];
+    $no_hp = $_POST['no_hp'];
+    $foto = $_POST['foto'];
+
+    mysqli_query($mysqli, "UPDATE author SET nama='$nama', alamat='$alamat', no_hp='$no_hp', foto='$foto'")
+            or die(mysqli_error($mysqli));
+
+    $_SESSION['msg'] = "Successfully Edited Author Data";
+    $_SESSION['msg_type'] = "alert alert-";
+
+    header('location:../view/index_author.php');
 }

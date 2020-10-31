@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +13,7 @@
 
 <body>
     <?php include "./query_author.php";
+
     $id = $_GET['id'];
     $data = mysqli_query($mysqli, "SELECT * FROM author where id='$id'")
         or die(mysqli_error($mysqli));
@@ -26,31 +30,38 @@
             <?php endif; ?>
         </div>
 
-        <div class="row justify-content-center">
-            <div class="card">
+        <div class="row justify-content-center mt-4">
+            <div class="card ">
                 <div class="card-body">
-                    <div class="card-title">
-                        <form action="./query_author.php" method="POST">
-                            <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
-                            <div class="form-group">
-                                <label>Author Name</label>
-                                <input type="text" class="form-control" name="nama" value="<?php echo $data['nama']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <label>Address</label>
-                                <textarea id="address" rows="4" cols="50" name="address" value="<?php echo $data['address']; ?>"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Phone Number</label>
-                                <input type="number" class="form-control" name="nama" value="<?php echo $data['nama']; ?>">
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-warning">Edit</button>
-                            </div>
-                        </form>
-                    </div>
+                    <h5 class="card-title">Card title</h5>
+                    <form action="./query_author.php" method="POST">
+                        <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
+                        <div class="form-group">
+                            <label>Author Name</label>
+                            <select type="number" class="form-control" name="nama" value="<?php echo $data['nama']; ?>">
+                                <option disabled selected>Choose Author Name</option>
+                                <?php include "../process.php";
+                                $list = mysqli_query($mysqli, "SELECT * FROM author") or die(mysqli_error($mysqli));
+                                while ($row = $list->fetch_assoc()) : ?>
+                                    <option value="<?php echo $row['id']; ?>"><?php echo $row['nama']; ?></option>
+                                <?php endwhile; ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <textarea id="address" rows="4" cols="50" name="address" value="<?php echo $data['address']; ?>"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="number" class="form-control" name="nama" value="<?php echo $data['nama']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" name="update_author" class="btn btn-warning">Edit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
+        </div>
         </div>
 
 

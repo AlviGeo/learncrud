@@ -16,7 +16,8 @@ session_start();
     <?php include './query_book.php';
 
     $id = $_GET['id'];
-    $data = mysqli_query($mysqli, "SELECT * FROM book WHERE id = '$id'");
+    $data = mysqli_query($mysqli, "SELECT * FROM book WHERE id = '$id'")
+        or die(mysqli_error($mysqli));
     while ($book = $data->fetch_assoc()) :
     ?>
 
@@ -45,7 +46,7 @@ session_start();
                             <label>Author</label>
                             <select type="number" class="form-control" name="author_id" value="<?php echo $book['author']; ?>">
                                 <option disabled selected>Choose Author</option>
-                                <?php include "./process.php";
+                                <?php include "../process.php";
                                 $list = mysqli_query($mysqli, "SELECT * FROM author") or die(mysqli_error($mysqli));
                                 while ($row = $list->fetch_assoc()) : ?>
                                     <option value="<?php echo $row['id']; ?>"><?php echo $row['nama']; ?></option>

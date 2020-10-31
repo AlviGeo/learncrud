@@ -12,13 +12,12 @@
 <body>
 
     <div class="container ">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" style="padding-top: 50px; ">
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="card ">
                     <h3 class="card-title">Insert Book Data</h3>
                     <form action="./query_book.php" method="POST">
-                        <input type="hidden" name="id">
                         <div class="form-group">
                             <label>Book Title</label>
                             <input type="text" name="title" class="form-control" placeholder="Enter Book Title">

@@ -41,18 +41,15 @@
                 <th>Address</th>
                 <th>Phone Number</th>
                 <th>Photo</th>
-                <th>Photo</th>
+                <th>Actions</th>
             </tr>
         </thead>
 
         <?php
         include '../library/process.php';
-
         $no = 1;
-
         $row = $mysqli->query("SELECT * FROM author ")
             or die($mysqli->error);
-
         while ($result = $row->fetch_assoc()) :
         ?>
             <tr>
@@ -60,15 +57,11 @@
                 <td><?php echo $result['nama']; ?></td>
                 <td><?php echo $result['alamat']; ?></td>
                 <td><?php echo $result['no_hp']; ?></td>
-                <td><?php echo $result['photo']; ?></td>
-                <td><?php echo $result['blish']; ?></td>
-                <td><?php echo $result['no_hp']; ?></td>
                 <td><img src="<?php echo "../model/Images/" . $result['foto']; ?>" style="width: 50px; height: 50px" alt=""></td>
-                <td><img src=""</td>
                 <td>
-                    <a href="edit_author.php?edit=<?php echo $result['id']; ?>" class="btn btn-info">Edit </a>
-                    <a href="../model/query_author.php?delete=<?php echo $result['id']; ?>" class="btn btn-danger">Delete</a>
-                </td>
+                    <a href="./author/edit_author.php?edit=<?php echo $result['id']; ?>" class="btn btn-info">Edit </a></td>
+                <td><a href="../model/query_author.php?delete=<?php echo $result['id']; ?>" class="btn btn-danger">Delete</a></td>
+
             </tr>
         <?php endwhile; ?>
     </table>
