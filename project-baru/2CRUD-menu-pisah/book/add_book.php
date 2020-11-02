@@ -23,14 +23,14 @@
                             <input type="text" name="title" class="form-control" placeholder="Enter Book Title">
                         </div>
                         <div class="form-group">
-                            <label>Author</label>
+                            <label>Author Name</label>
                             <select type="number" name="author_id" class="form-control" placeholder="Enter Author's Name">
                                 <option disabled selected>Choose Author</option>
                                 <?php include "../process.php";
                                 $list = mysqli_query($mysqli, "SELECT * FROM author") or die(mysqli_error($mysqli));
                                 while ($row = $list->fetch_assoc()) : ?>
 
-                                    <option value="<?php echo $row['id']; ?>"><?= $row['nama']; ?></option>
+                                    <option value="<?php echo $row['id']; ?>"><?= $row['name']; ?></option>
                                 <?php endwhile; ?>
                             </select>
                         </div>

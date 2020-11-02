@@ -9,7 +9,6 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index Book</title>
 
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 
@@ -27,13 +26,12 @@ session_start();
                     <th>Author</th>
                     <th>Year</th>
                     <th>Publisher</th>
-                    <th>Description</th>
                     <th colspan="2">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                $mysqli = new mysqli("localhost", "root", "", "learncrud2") or die(mysqli_error($mysqli));
+                include "./process.php";
                 ($list = mysqli_query($mysqli, "SELECT * FROM book")) or
                     die($mysqli->error);
                 while ($row = $list->fetch_assoc()) : ?>

@@ -17,7 +17,8 @@ session_start();
     $id = $_GET['id'];
     $data = mysqli_query($mysqli, "SELECT * FROM author where id='$id'")
         or die(mysqli_error($mysqli));
-    while ($author = $data->fetch_assoc()) : ?>
+    while ($author = $data->fetch_assoc()) :
+    ?>
 
         <div class="container">
             <?php if (isset($_SESSION['msg'])) : ?>
@@ -31,9 +32,9 @@ session_start();
         </div>
 
         <div class="row justify-content-center mt-4">
-            <div class="card ">
+            <div class="card" style="width: 18rem; color:white; background-color:salmon; ">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">Edit Author</h5>
                     <form action="./query_author.php" method="POST">
                         <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
                         <div class="form-group">
@@ -53,13 +54,11 @@ session_start();
                         </div>
                         <div class="form-group">
                             <label>Phone Number</label>
-                            <input type="number" class="form-control" name="nama" value="<?php echo $data['nama']; ?>">
+                            <input type="number" class="form-control" name="phone" value="<?php echo $data['nama']; ?>">
                         </div>
-                        <div class="form-group">
-                            <button type="submit" name="update_author" class="btn btn-warning">Edit</button>
-                        </div>
-                    </form>
+                        <button type="submit" name="update" class="btn btn-warning">Edit</button>
                 </div>
+                </form>
             </div>
         </div>
         </div>

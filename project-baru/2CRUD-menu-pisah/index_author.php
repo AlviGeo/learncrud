@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +8,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index Author</title>
-
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
@@ -29,15 +31,15 @@
             </thead>
             <tbody>
                 <?php
-                $mysqli = new mysqli("localhost", "root", "", "learncrud2") or die(mysqli_error($mysqli));
-
-                ($list = mysqli_query($mysqli, "SELECT * FROM author")) or die(mysqli_error($mysqli));
+                include "./process.php";
+                ($list = mysqli_query($mysqli, "SELECT * FROM author"))
+                    or die(mysqli_error($mysqli));
                 while ($row = $list->fetch_assoc()) : ?>
                     <tr>
                         <td><?php echo $row['id']; ?></td>
-                        <td><?php echo $row['nama']; ?></td>''
+                        <td><?php echo $row['name']; ?></td>''
                         <td><?php echo $row['address']; ?></td>
-                        <td><?php echo $row['phone_number']; ?></td>
+                        <td><?php echo $row['phone']; ?></td>
                         <td><a href="./author/edit_author.php?id=<?php echo $row['id']; ?>" class="btn btn-info">Edit</a>
                             <a href="./author/query_author.php?delete=<?php echo $row['id']; ?>" onclick="return confirm('Do You Want to Delete This?');" class="btn btn-danger">Delete</a>
                         </td>

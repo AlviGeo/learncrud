@@ -19,7 +19,15 @@
                         <form action="./query_author.php" method="POST">
                             <div class="form-group">
                                 <label>Author Name</label>
-                                <input type="text" name="nama" class="form-control" placeholder="Enter Author Name">
+                                <select type="text" name="name" class="form-control" placeholder="Enter Author Name">
+                                    <option disabled selected>Choose Author</option>
+                                    <?php include "../process.php";
+                                    $list = mysqli_query($mysqli, "SELECT * FROM author") or die(mysqli_error($mysqli));
+                                    while ($row = $list->fetch_assoc()) : ?>
+
+                                        <option value="<?php echo $row['id']; ?>"><?= $row['name']; ?></option>
+                                    <?php endwhile; ?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Address</label>
@@ -27,7 +35,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Phone Number</label>
-                                <input type="text" name="phone_number" class="form-control" placeholder="Enter Phone Number">
+                                <input type="number" name="phone" class="form-control" placeholder="Enter Phone Number">
                             </div>
                             <div class="form-group">
                                 <button type="submit" name="save_author" class="btn btn-info">Add Author</button>
