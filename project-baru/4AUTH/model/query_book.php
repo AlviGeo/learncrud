@@ -32,7 +32,7 @@ if(isset($_GET['delete'])) {
 }
 
 if(isset($_GET['edit'])) {
-    $id = $_GET['id'];
+    $id = $_GET['edit'];
     $title = $_GET['title'];
     $author_id = $_GET['author_id'];
     $year = $_GET['year'];
@@ -44,7 +44,7 @@ if(isset($_GET['edit'])) {
     
 }
 
-if(isset($_POST['update'])) {
+if(isset($_POST['update_book'])) {
     $id = $_POST['id'];
     $title = $_POST['title'];
     $author_id = $_POST['author_id'];
@@ -52,7 +52,7 @@ if(isset($_POST['update'])) {
     $publisher = $_POST['publisher'];
     $description = $_POST['description'];
 
-    mysqli_query($mysqli, "UPDATE book SET title='$title', author_id='$author_id', year='$year', publisher='$publisher', description='$description'")
+    mysqli_query($mysqli, "UPDATE book SET title='$title', author_id='$author_id', year='$year', publisher='$publisher', description='$description' WHERE id='$id'")
             or die(mysqli_error($mysqli));
 
     $_SESSION['msg'] = "Successfully Updated Book Data into Databases";

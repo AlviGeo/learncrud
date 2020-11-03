@@ -17,9 +17,9 @@ session_start();
 
     <div class="container mt-4 ">
         <a href="./author/add_author.php" name="add_author" type="button" class="btn btn-success text-dark">Add Author</a>
-        <a href="../author/edit_author.php" name="edit_author" type="button" class="btn btn-warning" disabled>Edit Author</a>
-        <a href="#" name="delete_author" type="button" class="btn btn-danger" disabled>Delete Author</a>
-        <a href="#" name="view_author" type="button" class="btn btn-info" disabled>View Author</a>
+        <a href="../author/edit_author.php" name="edit_author" type="button" class="btn btn-warning disabled">Edit Author</a>
+        <a href="#" name="delete_author" type="button" class="btn btn-danger disabled">Delete Author</a>
+        <a href="#" name="view_author" type="button" class="btn btn-info disabled">View Author</a>
     </div>
     <br>
 
@@ -31,6 +31,7 @@ session_start();
                 <th>Name</th>
                 <th>Address</th>
                 <th>Phone</th>
+                <th>Photo</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -48,6 +49,7 @@ session_start();
                     <td><?php echo $result['name']; ?></td>
                     <td><?php echo $result['address']; ?></td>
                     <td><?php echo $result['phone']; ?></td>
+                    <td></td>
                     <td>
                         <a href="./author/edit_author.php?edit=<?php echo $result['id']; ?>" class="btn btn-warning">Edit</a>
                         <a href="../model/query_author.php?delete=<?php echo $result['id']; ?>" class="btn btn-danger">Delete</a>

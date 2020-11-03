@@ -16,13 +16,14 @@ session_start();
     <?php include "./layout/navbar.php"; ?>
 
     <div class="container mt-4 ">
-        <a href="./book/add_book.php" name="add_book" type="button" class="btn btn-success text-dark">Add Book</a>
-        <a href="../book/edit_book.php" name="edit_book" type="button" class="btn btn-warning" disabled>Edit Book</a>
-        <a href="#" name="delete_book" type="button" class="btn btn-danger" disabled>Delete Book</a>
-        <a href="#" name="view_book" type="button" class="btn btn-info" disabled>View Book</a>
+        <a href="./book/add_book.php" type="button" class="btn btn-success">Add Book</a>
+        <a href="./book/edit_book.php" type="button" class="btn btn-warning disabled" >Edit Book</a>
+        <a href="#" type="button" class="btn btn-danger disabled">Delete Book</a>
+        <a href="#" type="button" class="btn btn-info disabled">View Book</a>
     </div>
     <br>
 
+    <h3 class="mt-4">Book Table</h3>
     <table class="table table-striped">
         <thead>
             <tr>

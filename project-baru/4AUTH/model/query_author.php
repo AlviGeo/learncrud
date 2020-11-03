@@ -47,7 +47,7 @@ if(isset($_POST['update_author'])) {
     $address = $_POST['address'];
     $phone = $_POST['phone'];
 
-    mysqli_query($mysqli, "UPDATE author SET name='$name', address='$address', phone='$phone'")
+    mysqli_query($mysqli, "UPDATE author SET name='$name', address='$address', phone='$phone' WHERE id='$id'")
             or die(mysqli_error($mysqli));
     $_SESSION['msg'] = "Successfully Updated Author Data";
     $_SESSION['msg_type'] = "alert alert-";
