@@ -27,7 +27,7 @@ if (isset($_GET['delete'])) {
     header('location:../index_author.php');
 }
 
-if (isset($_GET['update'])) {
+if (isset($_POST['update'])) {
     $id = $_POST['id'];
     $name = $_POST['name'];
     $alamat = $_POST['alamat'];

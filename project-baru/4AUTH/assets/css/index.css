@@ -1,0 +1,12 @@
+body {
+    background-color: rgb(147, 187, 226);
+}
+
+.container {
+    justify-content: center;
+    
+}
+
+.card {
+    display: inline-block;
+}
