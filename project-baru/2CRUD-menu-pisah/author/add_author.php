@@ -24,7 +24,6 @@
                                     <?php include "../process.php";
                                     $list = mysqli_query($mysqli, "SELECT * FROM author") or die(mysqli_error($mysqli));
                                     while ($row = $list->fetch_assoc()) : ?>
-
                                         <option value="<?php echo $row['id']; ?>"><?= $row['name']; ?></option>
                                     <?php endwhile; ?>
                                 </select>
