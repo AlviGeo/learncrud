@@ -20,31 +20,40 @@
 
         <div class="container">
             <div class="row justify-content-center mt-5">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="card">
+                <div class="col-md-3"></div>
+                <div class="col-md-5">
+                    <div class="card" style="padding: 20px;">
                         <div class="card-title"></div>
                         <form action="../../model/query_book.php" method="POST">
-                            <input type="hidden" name="id" value="<?php echo $result['id']; ?>">
+                            <input type="hidden" name="id" value="<?php echo $id; ?>">
                             <div class="form-group">
                                 <label>Title</label>
                                 <input type="text" class="form-control" name="title" value="<?php echo $result['title']; ?>" placeholder="Edit Book Here">
                             </div>
                             <div class="form-group">
-                                <label>Author ID</label>
-                                <input name="author_id" id="author_id" class="form-control" value="<?php echo $result['author_id']; ?>" placeholder="Edit Author ID">
+                                <label>Author</label>
+                                <select name="author" id="author" class="form-control">
+                                    <?php
+                                    require_once '../../library/process.php';
+                                    $data = $mysqli->query("SELECT * FROM author") or die(mysqli_error(($mysqli)));
+
+                                    while ($authors = $data->fetch_assoc()) :
+                                    ?>
+                                        <option value="<?= $authors['id'] ?>"> <?= $authors['name'] ?> </option>
+                                    <?php endwhile; ?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Year</label>
-                                <input name="year" id="year" class="form-control" value="<?php echo $result['year']; ?>" placeholder="Edit Book's Year">
+                                <input name="year" class="form-control" value="<?php echo $result['year']; ?>" placeholder="Edit Book's Year">
                             </div>
                             <div class="form-group">
                                 <label>Publisher</label>
-                                <input name="publisher" id="publisher" class="form-control" value="<?php echo $result['publisher']; ?>" placeholder="Edit Publisher's Name">
+                                <input name="publisher" class="form-control" value="<?php echo $result['publisher']; ?>" placeholder="Edit Publisher's Name">
                             </div>
                             <div class="form-group">
                                 <label>Description</label>
-                                <input name="description" id="description" class="form-control" value="<?php echo $result['description']; ?>" placeholder="Edit Description">
+                                <input name="description" class="form-control" value="<?php echo $result['description']; ?>" placeholder="Edit Description">
                             </div>
                             <div class="form-group">
                                 <button type="submit" name="update_book" class="btn btn-warning">Edit Book</button>
@@ -54,7 +63,7 @@
                     </div>
                 </div>
             <?php endwhile; ?>
-            <div class="col-md-2"></div>
+            <div class="col-md-3"></div>
             </div>
         </div>
 

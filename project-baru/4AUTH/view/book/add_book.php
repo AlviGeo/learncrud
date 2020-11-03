@@ -20,18 +20,19 @@
                     <form action="../../model/query_book.php" method="POST">
                         <div class="form-group">
                             <label>Book Title</label>
-                            <select type="text" name="title" class="form-control" placeholder="Enter Book's Title">
-                                <option disabled selected>Choose Title</option>
-                                <?php include "../../library/process.php";
-                                $row = mysqli_query($mysqli, "SELECT * FROM book") or die(mysqli_error($mysqli));
-                                while ($result = $row->fetch_assoc()) : ?>
-                                    <option value="<?php echo $result['id']; ?>"><?= $result['title']; ?></option>
-                                <?php endwhile; ?>
-                            </select>
+                            <input type="text" name="title" class="form-control" placeholder="Enter Book Title">
                         </div>
                         <div class="form-group">
-                            <label>ID Author</label>
-                            <input type="number" name="author_id" cols="30" rows="10" class="form-control" placeholder="Enter Author's ID"></input>
+                            <label>Author Name</label>
+                            <select name="author" id="author" class="form-control">
+                                <option disabled selected>Choose Author</option>
+                                <?php require_once "../../library/process.php";
+                                ($row = mysqli_query($mysqli, "SELECT * FROM author"))
+                                    or die(mysqli_error($mysqli));
+                                while ($result = $row->fetch_assoc()) : ?>
+                                    <option value="<?= $result['id']; ?>"><?= $result['name']; ?></option>
+                                <?php endwhile; ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Year</label>
@@ -54,7 +55,7 @@
             <div class="col-md-2"></div>
         </div>
     </div>
-    
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>

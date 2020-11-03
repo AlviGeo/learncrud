@@ -21,14 +21,7 @@
                     <form action="../../model/query_author.php" method="POST">
                         <div class="form-group">
                             <label>Author Name</label>
-                            <select type="text" name="name" class="form-control" placeholder="Enter Author's Name">
-                                <option disabled selected>Choose Author</option>
-                                <?php include "../../library/process.php";
-                                $row = mysqli_query($mysqli, "SELECT * FROM author") or die(mysqli_error($mysqli));
-                                while ($result = $row->fetch_assoc()) : ?>
-                                    <option value="<?php echo $result['id']; ?>"><?= $result['name']; ?></option>
-                                <?php endwhile; ?>
-                            </select>
+                            <input type="text" name="name" class="form-control" placeholder="Enter Author's Name">
                         </div>
                         <div class="form-group">
                             <label>Address</label>

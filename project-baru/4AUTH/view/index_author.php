@@ -10,16 +10,27 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index of Author</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../assets/navbar.css">
 </head>
 
 <body>
     <?php include "./layout/navbar.php"; ?>
 
+    <?php if (isset($_SESSION['msg'])) : ?>
+        <div id="message">
+            <div class="<?= $_SESSION['msg_type']; ?>success alert-dismissible fade show" role="alert">
+                <?php
+                echo $_SESSION['msg'];
+                unset($_SESSION['msg']);
+                ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    <?php endif; ?>
+
+
     <div class="container mt-4 ">
         <a href="./author/add_author.php" name="add_author" type="button" class="btn btn-success text-dark">Add Author</a>
-        <a href="../author/edit_author.php" name="edit_author" type="button" class="btn btn-warning disabled">Edit Author</a>
-        <a href="#" name="delete_author" type="button" class="btn btn-danger disabled">Delete Author</a>
-        <a href="#" name="view_author" type="button" class="btn btn-info disabled">View Author</a>
     </div>
     <br>
 

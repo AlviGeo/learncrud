@@ -10,6 +10,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index of Book</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../assets/navbar.css">
 </head>
 
 <body>
@@ -17,9 +18,6 @@ session_start();
 
     <div class="container mt-4 ">
         <a href="./book/add_book.php" type="button" class="btn btn-success">Add Book</a>
-        <a href="./book/edit_book.php" type="button" class="btn btn-warning disabled" >Edit Book</a>
-        <a href="#" type="button" class="btn btn-danger disabled">Delete Book</a>
-        <a href="#" type="button" class="btn btn-info disabled">View Book</a>
     </div>
     <br>
 
@@ -40,7 +38,7 @@ session_start();
         <?php
         include "../library/process.php";
         $no = 1;
-        ($row = mysqli_query($mysqli, "SELECT * FROM book"))
+        ($row = mysqli_query($mysqli, "SELECT * FROM author JOIN book ON author.id=book.author_id "))
             or die(mysqli_error($mysqli));
         while ($result = $row->fetch_assoc()) :
         ?>
@@ -49,7 +47,7 @@ session_start();
                 <tbody>
                     <td><?php echo $no++; ?></td>
                     <td><?php echo $result['title']; ?></td>
-                    <td><?php echo $result['author_id']; ?></td>
+                    <td><?php echo $result['name']; ?></td>
                     <td><?php echo $result['year']; ?></td>
                     <td><?php echo $result['publisher']; ?></td>
                     <td><?php echo $result['description']; ?></td>
