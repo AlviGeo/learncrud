@@ -1,21 +1,21 @@
 <?php
 
-session_start();
-
-$mysqli = new mysqli("localhost", "root", "", "learncrud2") or die(mysqli_error($mysqli));
+include "../library/process.php";
 
 
 if (isset($_POST['save_book'])) {
+    // The path to store the uploaded image
     $target = __DIR__ . "/Images/";
 
     // Check file extension
     $file_extension = array('png', 'jpg', 'jpeg');
     // The path to store the uploaded images
     $picture = $_FILES['photo']['name'];
+
     // get the file 
     $x         = explode('.', $picture);
-
     $extension = strtolower(end($x));
+    
     // check images size
     $image_size = $_FILES['photo']['size'];
     $file_tmp = $_FILES['photo']['tmp_name'];

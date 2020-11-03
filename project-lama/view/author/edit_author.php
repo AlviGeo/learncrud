@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,9 +13,11 @@
 
 <body>
     <?php
-    require_once '../../model/query_author';
+    require_once "../../library/process.php";
+
     $id = $_GET['edit'];
-    $data = mysqli_query($mysqli, "SELECT * FROM author WHERE id = '$id'");
+    $data = mysqli_query($mysqli, "SELECT * FROM author WHERE id = '$id'")
+            or die(mysqli_error($mysqli));
     while ($menu = $data->fetch_assoc()) :
     ?>
 

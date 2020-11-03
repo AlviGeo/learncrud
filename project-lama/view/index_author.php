@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +15,7 @@
 </head>
 
 <body>
+  
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,7 +53,7 @@
         <?php
         include '../library/process.php';
         $no = 1;
-        $row = $mysqli->query("SELECT * FROM author ")
+        ($row = mysqli_query($mysqli, "SELECT * FROM author "))
             or die($mysqli->error);
         while ($result = $row->fetch_assoc()) :
         ?>

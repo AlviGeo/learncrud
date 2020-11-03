@@ -5,20 +5,21 @@ session_start();
 include '../library/process.php';
 
 if (isset($_POST['save_author'])) {
-    // The path to srgtore the uploaded image
+    // The path to store the uploaded image
     $target         = __DIR__ . "/Images/";
 
     // Check file extension
     $file_extension = array('png', 'jpg', 'jpeg');
     // The path to store the uploaded images
-    $picture        = $_FILES['images']['name'];
-    // print_r($picture);
+    $picture        = $_FILES['foto']['name'];
+    
     // get the file extension
     $x              = explode('.', $picture);
     $extension      = strtolower(end($x));
+
     // check images size
-    $image_size     = $_FILES['images']['size'];
-    $file_tmp       = $_FILES['images']['tmp_name'];
+    $image_size     = $_FILES['foto']['size'];
+    $file_tmp       = $_FILES['foto']['tmp_name'];
 
 
     // get others data
@@ -68,6 +69,7 @@ if (isset($_POST['edit_author'])) {
     $nama = $_POST['nama'];
     $alamat = $_POST['alamat'];
     $no_hp = $_POST['no_hp'];
+    $foto = $_POST['foto'];
     mysqli_query(
         $mysqli,
         "UPDATE author SET nama='$nama', alamat='$alamat', no_hp='$no_hp' WHERE id=$id"
