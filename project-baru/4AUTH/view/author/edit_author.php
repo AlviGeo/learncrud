@@ -23,7 +23,7 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-title"></div>
-                        <form action="../../model/query_author.php" method="POST">
+                        <form action="../../model/query_author.php" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="id" value="<?php echo $result['id']; ?>">
                             <div class="form-group">
                                 <label>Name</label>
@@ -36,6 +36,10 @@
                             <div class="form-group">
                                 <label>Phone</label>
                                 <input type="number" name="phone" class="form-control" value="<?php echo $result['phone']; ?>" placeholder="Edit Author Phone">
+                            </div>
+                            <div class="form-group">
+                                <label>Photo</label>
+                                <input type="file" name="photo" class="form-control" value="<?php echo $result['photo']; ?>" placeholder="Edit Author Photo">
                             </div>
                             <div class="form-group">
                                 <button type="submit" name="update_author" class="btn btn-warning">Edit Author</button>

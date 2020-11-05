@@ -18,7 +18,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-title"></div>
-                    <form action="../../model/query_author.php" method="POST">
+                    <form action="../../model/query_author.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>Author Name</label>
                             <input type="text" name="name" class="form-control" placeholder="Enter Author's Name">
@@ -30,6 +30,10 @@
                         <div class="form-group">
                             <label>Phone Number</label>
                             <input type="number" name="phone" class="form-control" placeholder="Enter Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <label>Photo</label>
+                            <input type="file" name="photo" class="form-control" placeholder="Enter Author's Photo">
                         </div>
                         <div class="form-group">
                             <button type="submmit" name="add_author" class="btn btn-success">Add Author</button>

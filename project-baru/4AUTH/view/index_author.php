@@ -10,7 +10,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index of Author</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../assets/navbar.css">
+    <!-- <link rel="stylesheet" href="../../assets/navbar.css"> -->
 </head>
 
 <body>
@@ -60,7 +60,7 @@ session_start();
                     <td><?php echo $result['name']; ?></td>
                     <td><?php echo $result['address']; ?></td>
                     <td><?php echo $result['phone']; ?></td>
-                    <td></td>
+                    <td><?php echo $result['photo']; ?></td>
                     <td>
                         <a href="./author/edit_author.php?edit=<?php echo $result['id']; ?>" class="btn btn-warning">Edit</a>
                         <a href="../model/query_author.php?delete=<?php echo $result['id']; ?>" class="btn btn-danger">Delete</a>
