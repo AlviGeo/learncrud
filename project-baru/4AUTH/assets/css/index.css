@@ -1,12 +1,158 @@
+nav.navbar {
+  border-bottom: 1px solid rgba(72, 94, 144, 0.16);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(72, 94, 144, 0.16);
+}
+
 body {
-    background-color: rgb(147, 187, 226);
+  background-color: rgb(147, 187, 226);
 }
 
 .container {
-    justify-content: center;
-    
+  justify-content: center;
 }
 
 .card {
-    display: inline-block;
+  display: inline-block;
+}
+
+.footer {
+  font-size: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter UI", Roboto, sans-serif;
+  letter-spacing: 0.3px;
+  padding: 15px 25px;
+  background-color: #fafbfc;
+  color: #637388;
+  border-top: 1px solid rgba(72, 94, 144, 0.16);
+  text-transform: uppercase;
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.footer a {
+  padding: 0;
+  color: #1b2e4b;
+}
+
+.footer a:hover,
+.footer a:focus {
+  color: #0168fa;
+}
+
+.footer a + .nav-link {
+  margin-left: 25px;
+}
+
+.footer > div:last-child {
+  margin-top: 15px;
+}
+
+@media (min-width: 576px) {
+  .footer > div:last-child {
+    margin-top: 0;
+  }
+}
+
+.mg-t-10 {
+  margin-top: 10px;
+}
+
+.navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+.navbar > .container,
+.navbar > .container-fluid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tx-bold {
+  font-weight: 700;
+}
+
+.mg-30 {
+  margin: 30px !important;
+}
+
+.mg-b-0 {
+  margin-bottom: 0px !important;
+}
+
+.mg-b-10 {
+  margin-bottom: 10px !important;
+}
+
+.mg-b-20 {
+  margin-bottom: 20px !important;
+}
+
+.mg-b-30 {
+  margin-bottom: 30px !important;
+}
+
+.mg-b-100 {
+  margin-bottom: 100px !important;
+}
+
+.mg-t-10 {
+  margin-top: 10px !important;
+}
+
+.mg-t-20 {
+  margin-top: 20px !important;
+}
+
+.mg-t-30 {
+  margin-top: 30px !important;
+}
+
+.mg-t-40 {
+  margin-top: 40px !important;
+}
+
+.mg-t-50 {
+  margin-top: 50px !important;
+}
+
+.mg-l-10 {
+  margin-left: 10px !important;
+}
+
+.mg-l-20 {
+  margin-left: 20px !important;
+}
+
+.mg-l-30 {
+  margin-left: 30px !important;
+}
+
+.mg-r-10 {
+  margin-right: 10px !important;
+}
+
+.wd-100p {
+  width: 100px;
+}
+
+.ht-50 {
+  height: 50px;
+}
+
+.tx-danger {
+  color: #dc3545;
 }
