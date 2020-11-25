@@ -46,7 +46,7 @@ if (isset($_POST['register_user'])) {
             $mail->Host         = "smtp.gmail.com";
             $mail->SMTPAuth     = true;
             $mail->Username     = "annikageovan@gmail.com";
-            $mail->Password     = "alvigeovanny";
+            $mail->Password     = "";
             $mail->SMTPSecure   = "tsl";
             $mail->Port         = 587;
             $mail->setFrom('annikageovan@gmail.com', 'Alvi');
@@ -113,7 +113,7 @@ if (isset($_POST['verify_account'])) {
     $_SESSION['msg'] = "Successfully Verify your Account";
     $_SESSION['msg_type'] = "alert-success";
 
-    header('location:../../view/auth/login.php');
+    // header('location:../../view/auth/login.php');
 }
 
 // Resent verification email
