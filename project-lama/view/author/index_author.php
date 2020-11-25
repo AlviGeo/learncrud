@@ -35,7 +35,9 @@ session_start();
 
     <div class="container mt-4">
         <a href="./author/add_author.php" class="btn btn-success">Add Author</a>
+        <a href="add_book.php" class="btn btn-success">Add Book</a>
     </div>
+    
 
     <h3 class="mt-2">Table Author</h3>
     <table class="table">

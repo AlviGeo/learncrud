@@ -9,35 +9,33 @@
 </head>
 
 <body>
-<div class="container">
-        <div class="row mg-b-10">
-            <div class="col-md-2"></div>
-            <div class="col-md-5">
-                <form action="../../model/auth/login_controller.php" method="POST" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="fullname">Fullname</label>
-                        <input type="text" name="fullname" id="fullname" class="form-control" placeholder="Please input your Fullname here." required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="text" name="email" id="email" class="form-control" placeholder="Please enter ypur email">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Password</label>
-                        <input type="password" name="password1" id="password1" class="form-control" placeholder="Please enter ypur password">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Password Confirmation</label>
-                        <input type="password" name="password2" id="password2" class="form-control" placeholder="Enter Password Confirmation">
-                    </div>
-                    <div class="form-group mg-t-50">
-                        <button class="btn btn-danger btn-block" name="register_user" id="register_user">Sign Up</button>
+    <?php include "../layout/navbar.php"; ?>
+
+    <?php require_once "../../library/process.php";
+    require_once "../../model/auth/register_controller.php";
+    $token = $_GET['token'];
+    $email = $_GET['email'];
+
+    ?>
+    <div class="container-fluid" >
+        <div class="row mg-t-30">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form action="../../model/auth/register_controller.php" method="POST">
+                    <div class="card no-border mg-30">
+                        <div class="card-body">
+                            <h5 class="card-title">Verify Your Account Here</h5>
+                            <input type="hidden" name="verify_token" value="<?php echo $token; ?>">
+                            <input type="hidden" name="email" value="<?php echo $email; ?>">
+                            <button class="btn btn-danger btn-block" name="verify_account">Verify</button>
+                        </div>
                     </div>
                 </form>
             </div>
+            <div class="col-md-4"></div>
         </div>
-        <div class="col-md-5"></div>
     </div>
+    <?php include "../layout/footer.php"; ?>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>

@@ -11,17 +11,17 @@
 
 <body>
     <div class="container">
-        <?php require_once '../../model/auth/register_controller.php' ?>
+        <?php require_once '../../model/auth/login_controller.php' ?>
         <?php include "../../helper/response.php"; ?>
         <div class="row justify-content-center" style="padding-top: 50px;">
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="card">
-                    <form action="../../model/auth/login_controller.php" method="POST" enctype="multipart/form-data">
+                    <form action="../../model/auth/login_controller.php" method="POST" accept-charset="utf-8">
 
                         <div class="form-group">
                             <label for="email">Email Address</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Please enter ypur email">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Please enter your email">
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>

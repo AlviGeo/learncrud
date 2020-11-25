@@ -1,6 +1,6 @@
 <?php
 if (isset($_SESSION['msg'])) : ?>
-    <div class="<?= $_SESSION['msg_type']; ?>success" role="alert">
+    <div class="alert <?= $_SESSION['msg_type']; ?>" role="alert">
         <?php
         echo $_SESSION['msg'];
         unset($_SESSION['msg']);

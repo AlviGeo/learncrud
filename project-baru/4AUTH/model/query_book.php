@@ -14,7 +14,7 @@ if (isset($_POST['add_book'])) {
         or die(mysqli_error($mysqli));
 
     $_SESSION['msg'] = "Successfully Added Book Data into Databases";
-    $_SESSION['msg_type'] = "alert alert-";
+    $_SESSION['msg_type'] = "alert-success";
 
     header('location:../view/index_book.php');
 }
@@ -26,7 +26,7 @@ if (isset($_GET['delete'])) {
         or die(mysqli_error($mysqli));
 
     $_SESSION['msg'] = "Successfully Deleted Data From Databases";
-    $_SESSION['msg_type'] = "alert alert-";
+    $_SESSION['msg_type'] = "alert-success";
 
     header('location:../view/index_book.php');
 }
@@ -55,7 +55,7 @@ if (isset($_POST['update_book'])) {
         or die(mysqli_error($mysqli));
 
     $_SESSION['msg'] = "Successfully Updated Book Data into Databases";
-    $_SESSION['msg_type'] = "alert alert-";
+    $_SESSION['msg_type'] = "alert-success";
 
     header('location:../view/index_book.php');
 }

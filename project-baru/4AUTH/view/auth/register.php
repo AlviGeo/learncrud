@@ -26,11 +26,11 @@
                             <input type="text" name="email" id="email" class="form-control" placeholder="Please enter ypur email">
                         </div>
                         <div class="form-group">
-                            <label for="email">Password</label>
+                            <label for="password">Password</label>
                             <input type="password" name="password" id="password" class="form-control" placeholder="Please enter ypur password">
                         </div>
                         <div class="form-group">
-                            <label for="email">Password Confirmation</label>
+                            <label for="pass_confirm">Password Confirmation</label>
                             <input type="password" name="password_confirm" id="password_confirm" class="form-control" placeholder="Enter Password Confirmation">
                         </div>
                         <div class="form-group mg-t-50">

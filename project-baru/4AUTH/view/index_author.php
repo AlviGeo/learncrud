@@ -9,6 +9,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index of Author</title>
+    <link rel="stylesheet" href="../assets/css/index.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="../../assets/navbar.css"> -->
 </head>
@@ -28,47 +29,47 @@ session_start();
         </div>
     <?php endif; ?>
 
+    <div class="container">
+        <div class="container mt-4 ">
+            <a href="./author/add_author.php" name="add_author" type="button" class="btn btn-success">Add Author</a>
+        </div>
+        <br>
 
-    <div class="container mt-4 ">
-        <a href="./author/add_author.php" name="add_author" type="button" class="btn btn-success text-dark">Add Author</a>
-    </div>
-    <br>
+        <h3 class="mt-4">Authors Table</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Photo</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+    </div>  
+    <?php
+    include "../library/process.php";
+    $no = 1;
+    ($row = mysqli_query($mysqli, "SELECT * FROM author"))
+        or die(mysqli_error($mysqli));
+    while ($result = $row->fetch_assoc()) :
+    ?>
+        <tr>
+            <tbody>
+                <td><?php echo $no++; ?></td>
+                <td><?php echo $result['name']; ?></td>
+                <td><?php echo $result['address']; ?></td>
+                <td><?php echo $result['phone']; ?></td>
+                <td><?php echo $result['photo']; ?></td>
+                <td>
+                    <a href="./author/edit_author.php?edit=<?php echo $result['id']; ?>" class="btn btn-warning">Edit</a>
+                    <a href="../model/query_author.php?delete=<?php echo $result['id']; ?>" class="btn btn-danger">Delete</a>
+                </td>
+            </tbody>
+        </tr>
 
-    <h3 class="mt-4">Authors Table</h3>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Phone</th>
-                <th>Photo</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-
-        <?php
-        include "../library/process.php";
-        $no = 1;
-        ($row = mysqli_query($mysqli, "SELECT * FROM author"))
-            or die(mysqli_error($mysqli));
-        while ($result = $row->fetch_assoc()) :
-        ?>
-            <tr>
-                <tbody>
-                    <td><?php echo $no++; ?></td>
-                    <td><?php echo $result['name']; ?></td>
-                    <td><?php echo $result['address']; ?></td>
-                    <td><?php echo $result['phone']; ?></td>
-                    <td><?php echo $result['photo']; ?></td>
-                    <td>
-                        <a href="./author/edit_author.php?edit=<?php echo $result['id']; ?>" class="btn btn-warning">Edit</a>
-                        <a href="../model/query_author.php?delete=<?php echo $result['id']; ?>" class="btn btn-danger">Delete</a>
-                    </td>
-                </tbody>
-            </tr>
-
-        <?php endwhile; ?>
+    <?php endwhile; ?>
 
     </table>
 

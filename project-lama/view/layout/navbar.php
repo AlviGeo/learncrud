@@ -22,7 +22,7 @@
                     <a class="nav-link" href="./book/book_index">Book <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./author_index">Author</a>
+                    <a class="nav-link" href="./author/author_index">Author</a>
                 </li>
             </ul>
         </div>

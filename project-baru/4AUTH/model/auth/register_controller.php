@@ -9,7 +9,7 @@ require_once "../../vendor/autoload.php";
 
 session_start();
 
-
+// Sign Up user
 if (isset($_POST['register_user'])) {
     $fullname   = $_POST['fullname'];
     $email      = $_POST['email'];
@@ -20,7 +20,7 @@ if (isset($_POST['register_user'])) {
 
     $message = file_get_contents('../../view/emails/verify_account.php');
     $message = str_replace('%fullname%', $fullname, $message);
-    $message = str_replace('%llink%', "http://localhost/basisphp/project-baru/4AUTH/view/auth/verify.php?token=" . $token, $message);
+    $message = str_replace('%link%', "http://localhost/basicphp/project-baru/4AUTH/view/auth/verify.php?token=" . $token . "&email=" . $email, $message);
 
     if ($_POST['password'] !== $_POST['password_confirm']) {
         $_SESSION['fullname'] = $fullname;
@@ -45,11 +45,11 @@ if (isset($_POST['register_user'])) {
             $mail->STMTDebug    = 3;
             $mail->Host         = "smtp.gmail.com";
             $mail->SMTPAuth     = true;
-            $mail->Username     = "";
-            $mail->Password     = "";
+            $mail->Username     = "annikageovan@gmail.com";
+            $mail->Password     = "alvigeovanny";
             $mail->SMTPSecure   = "tsl";
             $mail->Port         = 587;
-            $mail->setFrom('', 'Alvi');
+            $mail->setFrom('annikageovan@gmail.com', 'Alvi');
             $mail->addAddress($email, $fullname);
             $mail->isHTML(true);
 
@@ -88,20 +88,20 @@ if (isset($_POST['register_user'])) {
             $_SESSION['msg'] = $errors['register_fail'];
             $_SESSION['msg_type'] = 'alert-danger';
 
-            header('location: ../../view/auth/register.php');
+            header('location: ../../view/auth/verify.php');
         }
     }
 }
 
 
-// verify account
+// Verify Account
 if (isset($_POST['verify_account'])) {
     $token = $_POST['verify_token'];
     $email = $_POST['email'];
     $verify_time = date('Y-m-d H:i:s', time());
 
     // find user by Email
-    $user = mysqli_query($mysqli, "UPDATE Users SET verify_token = '$token', verify_at ='$verify_time' WHERE email= '$email' LIMIT 1 ") or die(mysqli_error($mysqli));
+    $user = $mysqli->query("UPDATE Users SET verify_token = '$token', verified_at ='$verify_time' WHERE email= '$email' LIMIT 1 ") or die($mysqli->error);
 
     if (!$user) {
         $_SESSION['msg'] = "Sorry, Failed to verify your account";
@@ -111,7 +111,7 @@ if (isset($_POST['verify_account'])) {
     }
 
     $_SESSION['msg'] = "Successfully Verify your Account";
-    $_SESSION['msg_type'] = "alert-danger";
+    $_SESSION['msg_type'] = "alert-success";
 
     header('location:../../view/auth/login.php');
 }
@@ -123,30 +123,31 @@ if (isset($_POST['resend_verification'])) {
     $mail = new PHPMailer(true);
     $errors = [];
 
-    $result = mysqli_query($mysqli, "SELECT * FROM Users WHERE email='$email' LIMIT 1 ") or die(mysqli_error($mysqli));
+    $result = $mysqli->query("SELECT * FROM Users WHERE email='$email' LIMIT 1 ") or die($mysqli->error);
 
     if (mysqli_num_rows($result) === 1) {
         $user = $result->fetch_assoc();
 
         $current_year = date("Y");
         $fullname = $user['fullname'];
-        $message = file_get_contents('../../view/email/verify_account.php');
+        $message = file_get_contents('../../view/emails/verify_account.php');
         $message = str_replace('%fullname%', $fullname, $message);
-        $message = str_replace('%link%', "https://localhost/basicphp/project-baru/4AUTH/view/auth/verify.php?token=" . $token . "&email=" . $email, $message);
+        $message = str_replace('%link%', "http://localhost/basicphp/project-baru/4AUTH/view/auth/verify.php?token=" . $token . "&email=" . $email, $message);
 
         // send verification email
         $mail->isSMTP();
         $mail->SMTPDebug = 3;
-        $mail->Host = "smtp@gmail.com";
+        $mail->Host = "smtp.gmail.com";
         $mail->SMTPAuth = true;
-        $mail->Username = "";
-        $mail->Password = "";
+        $mail->Username = "annikageovan@gmail.com";
+        $mail->Password = "alvigeovanny";
 
         // if SMTP requires TLS Encryption then set it
         $mail->SMTPSecure = "tsl";
         //Set TCP Post to connect to
         $mail->Port = 587;
-        $mail->addAddress('alvigeovan29@gmail.com', 'Alvi');
+        $mail->setFrom('annikageovan@gmail.com', 'Alvi');
+        $mail->addAddress($email, $fullname);
         $mail->isHTML(true);
 
         $mail->Subject = 'Verify your Account';
@@ -166,7 +167,7 @@ if (isset($_POST['resend_verification'])) {
             $_SESSION['msg'] = "Success Resend Verification Email! Please check your inbox.";
             $_SESSION['msg_type'] = "alert-success";
 
-            echo "<script>window.location.assign('../../view/auth/resend_verify.php')</script>";
+            echo "<script>window.location.assign('../../view/auth/login.php')</script>";
             exit();
         }
     } else {
