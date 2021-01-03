@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "./process.php";
 
 $id = 0;
@@ -20,6 +21,10 @@ if (isset($_POST['save_book'])) {
         $mysqli,
         "INSERT INTO book (title, author_id, year, publisher, description) VALUES ('$title', '$author_id', '$year', '$publisher', '$description')"
     ) or die(mysqli_error($mysqli));
+
+    $_SESSION['msg'] = "Successfully Added Menu";
+    $_SESSION['msg_type'] = "alert-success";
+
     header('location:index.php');
 }
 
@@ -27,7 +32,11 @@ if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
 
     mysqli_query($mysqli, "DELETE FROM book WHERE id=$id");
-    header('location:index.php');
+
+    $_SESSION['msg'] = "Successfully Deleted Menu";
+    $_SESSION['msg_type'] = "alert-success";
+
+    
 }
 
 // edit = menampilkan form update
@@ -55,5 +64,9 @@ if (isset($_POST['update'])) {
     $description = $_POST['description'];
 
     mysqli_query($mysqli, "UPDATE book SET title='$title', author_id='$author_id', year='year', publisher='$publisher', description='$description' WHERE id=$id");
+
+    $_SESSION['msg'] = "Successfully Updated Menu";
+    $_SESSION['msg_type'] = "alert-success";
+
     header('location:./index.php');
 }

@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $mysqli = new mysqli("localhost", "root", "", "learncrud2") or die(mysqli_error($mysqli));
 
@@ -6,12 +7,12 @@ if (isset($_POST['save_author'])) {
     $name = $_POST['name'];
     $address = $_POST['address'];
     $phone = $_POST['phone'];
-
-    mysqli_query($mysqli, "INSERT INTO author(name, address, phone) VALUES ('$name', '$address', '$phone') ")
+    $photo = $_POST['photo'];
+    mysqli_query($mysqli, "INSERT INTO author(name, address, phone, photo) VALUES ('$name', '$address', '$phone', '$photo')")
         or die(mysqli_error($mysqli));
 
-    $_SESSION['msg'] = "Succesfully Added to Databases";
-    $_SESSION['msg_type'] = "alert alert-";
+    $_SESSION['message'] = "Succesfully Added to Databases";
+    $_SESSION['type'] = "alert-success";
 
     header('location:../index_author.php');
 }
@@ -21,23 +22,23 @@ if (isset($_GET['delete'])) {
 
     mysqli_query($mysqli, "DELETE FROM author WHERE id=$id");
 
-    $_SESSION['msg'] = "Successfully Deleted Menu";
-    $_SESSION['msg_type'] = "alert alert-";
+    $_SESSION['message'] = "Successfully Deleted Menu";
+    $_SESSION['type'] = "alert-success";
 
     header('location:../index_author.php');
 }
 
 if (isset($_POST['update'])) {
-    $id = $_POST['id'];
     $name = $_POST['name'];
-    $alamat = $_POST['alamat'];
+    $address = $_POST['address'];
     $phone = $_POST['phone'];
-    $foto = $_POST['foto'];
+    $photo = $_POST['photo'];
+    // $foto = $_POST['foto'];
 
-    mysqli_query($mysqli, "UPDATE author SET name='$name', alamat='$alamat', phone='$phone', foto='$foto' WHERE id='$id' ");
+    mysqli_query($mysqli, "UPDATE author SET name='$name', address='$address', phone='$phone', photo='$photo'WHERE id='$id'");
 
-    $_SESSION['msg'] = "Successfully Updated Author Data";
-    $_SESSION['msg'] = "alert alert-";
+    $_SESSION['message'] = "Successfully Updated Author Data";
+    $_SESSION['type'] = "alert-success";
 
     header('location: ../index_author.php');
 }

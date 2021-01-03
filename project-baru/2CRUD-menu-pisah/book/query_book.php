@@ -1,4 +1,6 @@
 <?php
+
+
 $mysqli = new mysqli("localhost", "root", "", "learncrud2") or die(mysqli_error($mysqli));
 
 if (isset($_POST['save_book'])) {
@@ -11,8 +13,8 @@ if (isset($_POST['save_book'])) {
     mysqli_query($mysqli, "INSERT INTO book (title, author_id, year, publisher, description) VALUES ('$title', '$author_id', '$year', '$publisher', '$description') ")
         or die(mysqli_error($mysqli));
 
-    $_SESSION['msg'] = 'Successfully Added New Menu';
-    $_SESSION['msg_type'] = 'alert-success';
+    $_SESSION['message'] = 'Successfully Added New Menu';
+    $_SESSION['type'] = 'alert-success';
 
     header('location:../index_book.php');
 }
@@ -22,8 +24,8 @@ if (isset($_GET['delete'])) {
 
     mysqli_query($mysqli, "DELETE FROM book WHERE id=$id");
 
-    $_SESSION['msg'] = "Successfully Deleted Menu";
-    $_SESSION['msg_type'] = "alert-danger";
+    $_SESSION['message'] = "Successfully Deleted Menu";
+    $_SESSION['type'] = "alert-danger";
 
     header('location:../index_book.php');
 }
@@ -55,8 +57,8 @@ if (isset($_POST['update'])) {
 
     mysqli_query($mysqli, "UPDATE book SET title='$title', author_id='$author_id', year='$year', publisher='$publisher', description='$description' WHERE id='$id' ");
 
-    $_SESSION['msg'] = "Successfully Updated the Book";
-    $_SESSION['msg_type'] = "alert-warning";
+    $_SESSION['message'] = "Successfully Updated the Book";
+    $_SESSION['type'] = "alert-warning";
 
     header('location:../index_book.php');
 }

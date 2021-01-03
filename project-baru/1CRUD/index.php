@@ -7,7 +7,7 @@
     <title>Simple Book CRUD</title>
     <link rel="stylesheet" href="./styles.css">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 
 <body>
@@ -15,10 +15,20 @@
 
     <!-- TABLE -->
     <div class="container">
+        <?php if (isset($_SESSION['msg'])) : ?>
+            <div id="message">
+                <div class="alert <?= $_SESSION['msg_type']; ?> alert-dismissible fade show" role="alert">
+                    <?php
+                    echo $_SESSION['msg'];
+                    unset($_SESSION['msg']);
+                    ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        <?php endif; ?>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
-                    <th>Book ID</th>
                     <th>Book Title</th>
                     <th>Author</th>
                     <th>Year</th>
@@ -40,7 +50,7 @@
                         <td><?php echo $row['publisher']; ?></td>
                         <td><?php echo $row['description']; ?></td>
                         <td><a href="index.php?edit_book=<?php echo $row['id']; ?>" class="btn btn-info">Edit</a>
-                            <a href="Query.php?delete=<?php echo $row['id']; ?>" onclick="return confirm('Do You want to delete this?');" class="btn btn-danger">Delete</a>
+                        <a href="Query.php?delete=<?php echo $row['id']; ?>" onclick="return confirm('Do you want to delete this?');" class="btn btn-danger"> Delete</a>
                         </td>
                     </tr>
                 <?php endwhile; ?>
@@ -53,6 +63,7 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="card ">
+                    <?php include "./alert.php"; ?>
                     <h3 class="card-title">Insert Book Data</h3>
                     <form action="./Query.php" method="POST">
                         <input type="hidden" name="id" value="<?php echo $id; ?>">

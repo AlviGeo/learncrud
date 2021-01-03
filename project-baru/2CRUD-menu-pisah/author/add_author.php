@@ -37,6 +37,10 @@
                                 <input type="number" name="phone" class="form-control" placeholder="Enter Phone Number">
                             </div>
                             <div class="form-group">
+                                <label>Insert Photo</label>
+                                <input type="file" name="photo" class="form-control" >
+                            </div>
+                            <div class="form-group">
                                 <button type="submit" name="save_author" class="btn btn-info">Add Author</button>
                             </div>
                         </form>

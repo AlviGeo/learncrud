@@ -46,7 +46,7 @@ if (isset($_POST['register_user'])) {
             $mail->Host         = "smtp.gmail.com";
             $mail->SMTPAuth     = true;
             $mail->Username     = "annikageovan@gmail.com";
-            $mail->Password     = "";
+            $mail->Password     = "alvigeovanny";
             $mail->SMTPSecure   = "tsl";
             $mail->Port         = 587;
             $mail->setFrom('annikageovan@gmail.com', 'Alvi');
@@ -140,7 +140,7 @@ if (isset($_POST['resend_verification'])) {
         $mail->Host = "smtp.gmail.com";
         $mail->SMTPAuth = true;
         $mail->Username = "annikageovan@gmail.com";
-        $mail->Password = "";
+        $mail->Password = "alvigeovanny";
 
         // if SMTP requires TLS Encryption then set it
         $mail->SMTPSecure = "tsl";
